@@ -12,9 +12,6 @@ $.fn.extend({
 				overflow: 'hidden'
 			});
 		
-	/*	console.log($(this));
-		console.log($(this).width());*/
-		
 		var w = $(this).width(); // full width
 		var h = $(this).height(); // full height
 		var cw = w / opt.columns; // cell width
