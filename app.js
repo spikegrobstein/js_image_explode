@@ -19,7 +19,7 @@ $.fn.extend({
 			self = $(this).hide();
 		
 		
-		// ok, let's dupicate this shit
+		// ok, let's duplicate this shit
 		for (var i = 0; i < opt.rows; i++) {
 			for (var j = 0; j < opt.columns; j++) {
 				$('<div class="tile"></div>')
