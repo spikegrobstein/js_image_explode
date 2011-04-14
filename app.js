@@ -20,9 +20,8 @@ $.fn.extend({
 		
 		
 		// ok, let's dupicate this shit
-		var i = 0, j = 0;
-		for (i = 0; i < opt.rows; i++) {
-			for (j = 0; j < opt.columns; j++) {
+		for (var i = 0; i < opt.rows; i++) {
+			for (var j = 0; j < opt.columns; j++) {
 				$('<div class="tile"></div>')
 					.css({
 						width: cw + 'px',
