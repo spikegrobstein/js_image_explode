@@ -12,11 +12,11 @@ $.fn.extend({
 				overflow: 'hidden'
 			});
 		
-		var w = $(this).width(); // full width
-		var h = $(this).height(); // full height
-		var cw = w / opt.columns; // cell width
-		var ch = h / opt.rows; // cell height
-		var self = $(this).hide();
+		var w = $(this).width(),	// full width
+			h = $(this).height(),		// full height
+			cw = w / opt.columns,		// cell width
+			ch = h / opt.rows,			// cell height
+			self = $(this).hide();
 		
 		
 		// ok, let's dupicate this shit
