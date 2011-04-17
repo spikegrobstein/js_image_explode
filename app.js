@@ -51,18 +51,15 @@ $.fn.extend({
 				
 				//console.log('processing above index for: ' + i + ' to ' + above_index);
 				
-				console.log($(above_tile).height() + ' | ' + above_tile_p.top + ' | ' + p.top);
+				//console.log("at.h,atp.t,p.t" + $(above_tile).height() + ' | ' + above_tile_p.top + ' | ' + p.top);
 				
 				if (above_tile.height() + above_tile_p.top < p.top) {
-					above_tile.css({height: p.top - above_tile_p.top});
-					console.log('adjusting ' + above_index);
+					//above_tile.css({height: p.top - above_tile_p.top});
+					above_tile.css({height: "+= 1px"});
+					
 				}
 			}
 			
-			/*if ($(tiles).index(tile) > columns) {
-				var last_tile = tiles[tiles.index(tile) % columns]
-			}
-			*/
 			$(tile)
 				.css({
 					left: (Math.floor(Math.random() * w) + (Math.random() > .5) ? -w : w) + 'px',
