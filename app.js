@@ -47,16 +47,23 @@ $.fn.extend({
 			if (i >= opt.columns) {
 				var above_index = i - opt.columns
 				var above_tile = $(tiles[above_index]);
-				var above_tile_p = $(above_tile).position();
-				
-				//console.log('processing above index for: ' + i + ' to ' + above_index);
-				
-				//console.log("at.h,atp.t,p.t" + $(above_tile).height() + ' | ' + above_tile_p.top + ' | ' + p.top);
+				var above_tile_p = above_tile.position();
 				
 				if (above_tile.height() + above_tile_p.top < p.top) {
 					//above_tile.css({height: p.top - above_tile_p.top});
 					above_tile.css({height: "+= 1px"});
 					
+				}
+			}
+			
+			// adjust width of previous tile if we're not on the left-most column and the previous tile isn't wide enough due to rounding error	
+			if (i % opt.columns != 0) {
+				var previous_index = i - 1;
+				var previous_tile = $(tiles[previous_index]);
+				var previous_tile_p = previous_tile.position;
+				
+				if (previous_tile.width + previous_tile_p.left < p.left) {
+					previous_tile.css({width: "+= 1px"});
 				}
 			}
 			
@@ -88,6 +95,6 @@ $.fn.explode.defaultOptions = {
 
 $(function() {
 	$('img').load(function() {
-		$(this).explode({rows: 5, columns: 5});
+		$(this).explode({rows: 4, columns: 10});
 	});
 });
