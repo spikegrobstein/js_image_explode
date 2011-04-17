@@ -50,7 +50,6 @@ $.fn.extend({
 				var above_tile_p = above_tile.position();
 				
 				if (above_tile.height() + above_tile_p.top < p.top) {
-					//above_tile.css({height: p.top - above_tile_p.top});
 					above_tile.css({height: "+= 1px"});
 					
 				}
@@ -62,11 +61,7 @@ $.fn.extend({
 				var previous_tile = $(tiles[previous_index]);
 				var previous_tile_p = previous_tile.position();
 				
-				//console.log('previous tile: ' + previous_index + ' ( ' + i + ' )');
-				//console.log(previous_tile.width() + ' ' + previous_tile_p.left + ' ' + p.left);
-				
 				if (previous_tile.width() + previous_tile_p.left < p.left) {
-					//console.log('fixing: ' + previous_index);
 					previous_tile.css({width: "+= 1px"});
 				}
 			}
