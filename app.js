@@ -45,10 +45,10 @@ $.fn.extend({
 			
 			// adjust height above tile if there's any gap due to rounding error			
 			if (i >= opt.columns) {
-				var above_index = i - opt.columns
+				var above_index = i - opt.columns;
 				var above_tile = $(tiles[above_index]);
 				var above_tile_p = above_tile.position();
-				
+
 				if (above_tile.height() + above_tile_p.top < p.top) {
 					above_tile.css({height: "+= 1px"});
 					
@@ -56,7 +56,7 @@ $.fn.extend({
 			}
 			
 			// adjust width of previous tile if we're not on the left-most column and the previous tile isn't wide enough due to rounding error	
-			if (i % opt.columns != 0) {
+			if (i % opt.columns !== 0) {
 				var previous_index = i - 1;
 				var previous_tile = $(tiles[previous_index]);
 				var previous_tile_p = previous_tile.position();
@@ -69,18 +69,18 @@ $.fn.extend({
 			// move tile offscreen and animate
 			$(tile)
 				.css({
-					left: (Math.floor(Math.random() * w) + (Math.random() > .5) ? -w : w) + 'px',
-					top: (Math.floor(Math.random() * h) + (Math.random() > .5) ? -h : h) + 'px'
+					left: (Math.floor(Math.random() * w) + (Math.random() > 0.5) ? -w : w) + 'px',
+					top: (Math.floor(Math.random() * h) + (Math.random() > 0.5) ? -h : h) + 'px'
 				})
 				.animate({
 					left: (p.left) + 'px',
 					top: (p.top) + 'px'
-				}, Math.floor(Math.random() * 1000 + 2000))
+				}, Math.floor(Math.random() * 1000 + 2000));
 		});// end each
 		
 		$.when(tiles).done(function(t) { 
-			//t.hide();
-			//self.show();
+			tiles.remove();
+			self.show();
 		}); 
 				
 		return self;
@@ -90,7 +90,7 @@ $.fn.extend({
 $.fn.explode.defaultOptions = {
 	rows: 10,
 	columns: 10
-}
+};
 
 
 $(function() {
@@ -630,10 +630,10 @@ $(function() {
 		"zombieplayground.jpg",
 		"zombies.jpg",
 		"zoom.gif"
-	]
+	];
 	
-	var src = images[Math.floor(Math.random() * images.length)];
-	$('img').attr('src', "images/" + src);
+	//var src = images[Math.floor(Math.random() * images.length)];
+	//$('img').attr('src', "images/" + src);
 	
 	$('img').load(function() {
 		$(this).explode({rows: 20, columns: 10});
