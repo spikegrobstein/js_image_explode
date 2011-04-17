@@ -41,17 +41,44 @@ $.fn.extend({
 		var tiles = container.find('.tile');
 		
 		tiles.each(function(i, tile) {
-			p = $(tile).position();
+			var p = $(tile).position();
 			
-			$(tile).css({
-				left: (Math.floor(Math.random() * w) + (Math.random() > .5) ? -w : w) + 'px',
-				top: (Math.floor(Math.random() * h) + (Math.random() > .5) ? -h : h) + 'px'
-			}).animate({
-				left: (p.left) + 'px',
-				top: (p.top) + 'px'
-			}, Math.floor(Math.random() * 1000 + 2000));
-		});
+			// adjust height above tile if there's any gap due to rounding error			
+			if (i >= opt.columns) {
+				var above_index = i - opt.columns
+				var above_tile = $(tiles[above_index]);
+				var above_tile_p = $(above_tile).position();
+				
+				//console.log('processing above index for: ' + i + ' to ' + above_index);
+				
+				console.log($(above_tile).height() + ' | ' + above_tile_p.top + ' | ' + p.top);
+				
+				if (above_tile.height() + above_tile_p.top < p.top) {
+					above_tile.css({height: p.top - above_tile_p.top});
+					console.log('adjusting ' + above_index);
+				}
+			}
+			
+			/*if ($(tiles).index(tile) > columns) {
+				var last_tile = tiles[tiles.index(tile) % columns]
+			}
+			*/
+			$(tile)
+				.css({
+					left: (Math.floor(Math.random() * w) + (Math.random() > .5) ? -w : w) + 'px',
+					top: (Math.floor(Math.random() * h) + (Math.random() > .5) ? -h : h) + 'px'
+				})
+				.animate({
+					left: (p.left) + 'px',
+					top: (p.top) + 'px'
+				}, Math.floor(Math.random() * 1000 + 2000))
+		});// end each
 		
+		$.when(tiles).done(function(t) { 
+			//t.hide();
+			//self.show();
+		}); 
+				
 		return self;
 	}
 });
@@ -64,6 +91,6 @@ $.fn.explode.defaultOptions = {
 
 $(function() {
 	$('img').load(function() {
-		$(this).explode();
+		$(this).explode({rows: 5, columns: 5});
 	});
 });
